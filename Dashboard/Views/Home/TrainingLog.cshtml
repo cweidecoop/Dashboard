@@ -1,0 +1,36 @@
+﻿@model Dashboard.ViewModels.TrainingLogViewModel
+
+<form asp-controller="Home" asp-action="TrainingLog" asp-method="post">
+    <div>
+        <label asp-for="Description"></label>
+        <input asp-for="Description" value=" "/>
+        <span asp-validation-for="Description"></span>
+    </div>
+    <div>
+        <label asp-for="Date"></label>
+        <input asp-for="Date" type="date" value="@DateTime.Today.Date"/>
+    </div>
+    <div>
+        <label asp-for="StartTime">Start Time</label>
+        <input asp-for="StartTime" type="time" value=" "/>
+    </div>
+    <div>
+        <label asp-for="EndTime">End Time</label>
+        <input asp-for="EndTime" type="time" value=" "/>
+    </div>
+    <input type="submit" value="Submit Entry" />
+</form>
+
+<table>
+    @foreach (var log in @Model.ParaLogs)
+    {
+        <tr>
+            <td>@log.Date.ToShortDateString()</td>
+            <td>@log.TimeIn</td>
+            <td>@log.TimeOut</td>
+            <td>Time Accrued: @log.TimeAccrued</td>
+        </tr>
+    }
+</table>
+
+
